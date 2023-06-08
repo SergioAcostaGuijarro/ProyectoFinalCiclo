@@ -1,0 +1,22 @@
+# Utilizamos la imagen oficial de PHP
+FROM php:7.4-fpm-alpine
+
+# Establecemos el directorio de trabajo
+WORKDIR /var/www
+
+# Instalamos las dependencias necesarias
+RUN apk update && apk add build-base vim
+RUN docker-php-ext-install pdo_mysql mysqli
+
+# Agregamos el usuario y grupo "www"
+RUN addgroup -g 1000 -S www && \
+    adduser -u 1000 -S www -G www
+
+# Cambiamos al usuario "www"
+USER www
+
+# Copiamos los archivos al contenedor
+COPY --chown=www:www . /var/www
+
+# Exponemos el puerto 9000
+EXPOSE 9000

@@ -1,0 +1,32 @@
+logging.level: debug
+logging.to_files: true
+logging.files:
+  path: /var/log/filebeat
+  name: filebeat
+  keepfiles: 7
+  permissions: 0600
+
+filebeat.config:
+  modules:
+    path: ${path.config}/modules.d/*.yml
+    reload.enabled: false
+
+filebeat.autodiscover:
+  providers:
+    - type: docker
+      templates:
+        - condition:
+            equals:
+              docker.container.image: febbweiss/java-log-generator:latest
+          config:
+            - type: container
+              multiline.type: pattern
+              multiline.pattern: '^[[:space:]]+(at|\.{3})[[:space:]]'
+              multiline.negate: false
+              multiline.match: after
+              paths:
+                - "/usr/share/logstash/logstash-tutorial.log"
+                - "/usr/share/logstash/logstash-tutorial-2.log"
+
+output.logstash:
+  hosts: ["logstash-01:5400"]

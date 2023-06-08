@@ -1,0 +1,70 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile_Php
+    image: php
+    container_name: app
+    restart: unless-stopped
+    volumes:
+      - ./:/var/www
+    networks:
+      - lemp-elk-red
+
+  webservers:
+    build:
+      context: .
+      dockerfile: Dockerfile_Nginx
+    image: nginx
+    container_name: webserver
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www
+      - ./config/app.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - lemp-elk-red
+
+  db:
+    image: mysql
+    container_name: db
+    environment:
+      MYSQL_DATABASE: educados
+      MYSQL_ROOT_PASSWORD: rootroot
+      MYSQL_USER: root
+      MYSQL_PASSWORD: rootroot
+    ports:
+      - "3607:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      - LANG=C.UTF-8
+    networks:
+      - lemp-elk-red
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    depends_on:
+      - db
+    networks:
+      - lemp-elk-red
+
+volumes:
+  dbdata:
+    driver: local
+
+networks:
+  lemp-elk-red:
+    external: true

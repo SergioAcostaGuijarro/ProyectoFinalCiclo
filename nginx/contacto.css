@@ -1,0 +1,98 @@
+/* Estilo para el formulario de contacto */
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Estilo para el encabezado del formulario */
+  .contact-form h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Estilo para los campos de entrada */
+  .form-group {
+    margin-bottom: 30px;
+    position: relative;
+  }
+  
+  .form-group label {
+    font-size: 18px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    font-size: 16px;
+    color: #333;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .form-group input[type="text"]:focus,
+  .form-group input[type="email"]:focus,
+  .form-group textarea:focus {
+    outline: none;
+    background-color: #e6e6e6;
+  }
+  
+  .form-validation {
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #e74c3c;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .form-group.invalid .form-validation {
+    opacity: 1;
+  }
+
+  /* Estilo para los campos de entrada */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  font-size: 16px;
+  color: #333;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-group label:after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #0072C6;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-group input[type="text"]:focus + label:after,
+.form-group input[type="email"]:focus + label:after,
+.form-group textarea:focus + label:after {
+  width: 50%;
+  transform: translateX(-50%);
+}
