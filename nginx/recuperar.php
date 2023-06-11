@@ -24,7 +24,7 @@ if(!empty($sessData['status']['msg'])){
                 <img src="img/educados.png" name="logo">
             </div>
             <div class="iniciosesion">
-                <a href="./inicio_sesion.php" id="inicio"><img src="./img/iniciowhite.png" alt="" width="75rpx"></a>
+                <a href="./inicio_sesión.php" id="inicio"><img src="./img/iniciowhite.png" alt="" width="75rpx"></a>
             </div>
         </div>
         <div class="container__menu">
@@ -45,12 +45,12 @@ if(!empty($sessData['status']['msg'])){
     <br><br><br><br><br>
     <main class="container">
         <form action="recuperar2.php" class="contact-form">
-            <h2>Recuperar contrasena</h2>
+            <h2>Recuperar contraseña</h2>
             <div class="form-group">
                 <input type="email" id="email" name="email" placeholder="Escriba aquí su email..." required>
             </div>
             <div class="form-group">
-                <a href="inicio_sesion.php">¿Ya tienes cuenta?</a>
+                <a href="inicio_sesión.php">¿Ya tienes cuenta?</a>
             </div>
             <div class="botones">
                 <input type="submit" name="comprobar" value="Enviar"></button>

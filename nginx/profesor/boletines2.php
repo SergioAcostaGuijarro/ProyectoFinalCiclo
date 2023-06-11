@@ -38,7 +38,7 @@ if (mysqli_num_rows($consulta) > 0) {
     $body .= 'a {color: #0066cc;}';
     $body .= '</style></head><body>';
     $body .= '<h2>Boletin de notas</h2>';
-    $body .= '<p>Hola<strong> ' . $nombre . '</strong>, ya se han publicado las notas de tu hijo '.$alumno.'</p>';
+    $body .= '<p>Hola:<strong> ' . $nombre . '</strong>, ya se han publicado las notas.</p>';
     $body .= '</body></html>';
 
     // Crear instancia de PHPMailer
@@ -48,12 +48,12 @@ if (mysqli_num_rows($consulta) > 0) {
         // Ajustes del servidor SMTP
         $mail->SMTPDebug = 0;                                       // Habilitar el registro detallado de depuración
         $mail->isSMTP();                                            // Enviar utilizando SMTP
-        $mail->Host       = 'smtp.gmail.com';                       // Establecer el servidor SMTP para enviar
-        $mail->SMTPAuth   = true;                                   // Habilitar autenticación SMTP
-        $mail->Username   = 'educadosinfo@gmail.com';               // Nombre de usuario SMTP
-        $mail->Password   = 'griitqiiiawfsyjq';                     // contrasena SMTP
-        $mail->SMTPSecure = 'tls';                                  // Habilitar el cifrado TLS
-        $mail->Port       = 587;                                    // Puerto TCP para conectarse; use 465 si ha establecido `SMTPSecure = PHPMailer::ENCRYPTION_SMTPS`
+        $mail->Host       = 'smtp.gmail.com';                       
+        $mail->SMTPAuth   = true;                           
+        $mail->Username   = 'educadosinfo@gmail.com';              
+        $mail->Password   = 'griitqiiiawfsyjq';                     
+        $mail->SMTPSecure = 'tls';                                  
+        $mail->Port       = 587;                                    
         $mail->IsHTML(true);                                        // Establecer el formato del mensaje como HTML
 
         // Remitentes
@@ -62,10 +62,10 @@ if (mysqli_num_rows($consulta) > 0) {
 
         // Contenido
         $mail->isHTML(true);
-        $mail->CharSet = 'UTF-8';                                   // Establecer el formato de correo electrónico como HTML
+        $mail->CharSet = 'UTF-8';                                   
         $mail->Subject = 'Publicación boletín';
         $mail->Body    = $body;
-        $mail->AddAttachment($boletin['tmp_name'], $boletin['name']); // Adjuntar archivo al correo
+        $mail->AddAttachment($boletin['tmp_name'], $boletin['name']); 
 
         // Enviar correo
         $mail->send();

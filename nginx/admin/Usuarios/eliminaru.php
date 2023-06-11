@@ -46,7 +46,7 @@ session_start();
       <div class="dashboard__item dashboard__item--full">
         <div class="card">
           <form action="eliminaru2.php" method="post">
-            <h5>Eliminar un trabajador:</h5>
+            <h5>Eliminar un usuario:</h5>
             <input type="id" placeholder="ID..." name="id"><input type="Submit" value="Eliminar" name="eliminar" class="btn  btn--primary">
           </form>
         <?PHP
@@ -76,7 +76,7 @@ session_start();
            print("<TD>" . $resultado['id_usuario'] . "</TD>\n");
            print("<TD>" . $resultado['nombre'] . "</TD>\n");
            print("<TD>" . $resultado['correo'] . "</TD>\n");
-           print("<TD>" . $resultado['contrasena'] . "</TD>\n");
+           print("<TD>" . $resultado['contraseña'] . "</TD>\n");
            print("<TD>" . $resultado['tipo_usuario'] . "</TD>\n");
            print("</TR>\n");
         }

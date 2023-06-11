@@ -46,10 +46,10 @@ session_start();
 			<?php
 			// Obtener el id del profesor a partir del correo de inicio de sesión
 			$correo = $_SESSION['correo'];
-			$conexion = mysqli_connect("localhost", "root", "rootroot", "educados") or die("No se puede conectar con el servidor");
+			$conexion = mysqli_connect("db", "root", "rootroot", "educados") or die("No se puede conectar con el servidor");
 			$instruccion = "SELECT id_usuario FROM profesor WHERE correo = '$correo'";
 			$consulta = mysqli_query($conexion, $instruccion) or die("Fallo en la consulta");
-			$id_profesor = mysqli_fetch_array($consulta)['tutor'];
+			$id_profesor = mysqli_fetch_array($consulta)['id_usuario'];
 
 			// Obtener todos los cursos a los que pertenece el profesor
 			$instruccion2 = "SELECT * FROM curso WHERE tutor = '$_SESSION[nombre]'";

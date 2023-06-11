@@ -20,21 +20,21 @@ if (mysqli_num_rows($resultado) > 0) {
         </script>";
 } elseif (strlen($pass) <= 4) {
     echo "<script language='javascript'>
-        alert('¡¡¡Las contrasenas tienen que tener mínimo 5 caracteres!!!');
+        alert('¡¡¡Las contraseñas tienen que tener mínimo 5 caracteres!!!');
         window.location.replace('./registrarse.php');
         </script>";
 } elseif ($pass != $pass2) {
     echo "<script language='javascript'>
-        alert('¡¡¡Las contrasenas no coinciden!!!');
+        alert('¡¡¡Las contraseñas no coinciden!!!');
         window.location.replace('./registrarse.php');
         </script>";
     } else {
-        $query = "insert into usuario (usuario, correo, contrasena, tipo_usuario) values ('$nombre','$correo','$passencryp','$tipo_usuario')";
+        $query = "insert into usuario (usuario, correo, contraseña, tipo_usuario) values ('$nombre','$correo','$passencryp','$tipo_usuario')";
         if(mysqli_query ($conexion, $query)) {
 
             echo "<script language='javascript'>
                 alert('¡¡¡Usuario creado!!! Se ha enviado un correo electrónico para confirmar tu dirección.');
-                window.location.replace('./inicio_sesion.php');
+                window.location.replace('./inicio_sesión.php');
                 </script>"; 
         } else {
             echo "<script language='javascript'>

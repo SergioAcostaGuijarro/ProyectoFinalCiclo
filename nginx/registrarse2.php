@@ -24,12 +24,12 @@
             </script>";
     } elseif (strlen($pass) <= 4) {
         echo "<script language='javascript'>
-            alert('¡¡¡Las contrasenas tienen que tener mínimo 5 caracteres!!!');
+            alert('¡¡¡Las contraseñas tienen que tener mínimo 5 caracteres!!!');
             window.location.replace('./registrarse.php');
             </script>";
     } elseif ($pass != $pass2) {
         echo "<script language='javascript'>
-            alert('¡¡¡Las contrasenas no coinciden!!!');
+            alert('¡¡¡Las contraseñas no coinciden!!!');
             window.location.replace('./registrarse.php');
             </script>";
     }
@@ -99,7 +99,7 @@
                                 <img src="img/educados.png" name="logo">
                             </div>
                             <div class="iniciosesion">
-                                <a href="./inicio_sesion.php" id="inicio"><img src="./img/iniciowhite.png" alt="" width="75rpx"></a>
+                                <a href="./inicio_sesión.php" id="inicio"><img src="./img/iniciowhite.png" alt="" width="75rpx"></a>
                             </div>
                         </div>
                         <div class="container__menu">

@@ -1,8 +1,5 @@
 # Configuración básica de Kibana
 server.host: "0.0.0.0"
-elasticsearch.username: "elastic"
-elasticsearch.password: "elastic"
-elasticsearch.ssl.verificationMode: none
 elasticsearch.hosts: ["http://es-node-01:9200"]
 
 # Configuración de seguridad
@@ -23,5 +20,3 @@ xpack.security.session.cleanupInterval: 600000
 
 # Configuración de Kibana index
 kibana.index: ".kibana"
-logging.verbose: true
-logging.quiet: false

@@ -1,6 +1,5 @@
 <?php
 session_start(); 
-
 ?>
 
 <!DOCTYPE html>
@@ -49,8 +48,8 @@ session_start();
         <form action="añadira2.php" method="POST">
             <input type="text" name="nombre" id="nombre" placeholder="Trabajador" required/>
             <input type="email" name="correo" id="correo" placeholder="Correo" required/>
-            <input type="password" name="pass" id="pass" placeholder="contrasena" required/>
-            <input type="password" name="pass2" id="pass2" placeholder="Repita la contrasena" required/>  
+            <input type="password" name="pass" id="pass" placeholder="Contraseña" required/>
+            <input type="password" name="pass2" id="pass2" placeholder="Repita la contraseña" required/>  
             <input type="submit" value="Añadir" name="añadir"  class="btn  btn--primary">
         </form>
             </form>

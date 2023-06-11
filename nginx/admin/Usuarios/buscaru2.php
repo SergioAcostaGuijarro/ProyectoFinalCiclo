@@ -1,11 +1,5 @@
 <?php
 session_start();
-
-if (empty($_SESSION['correo'])) {
-      header("Location: ./inicio_sesión.php");
-  }
-
-  
 ?>
 
 <!DOCTYPE html>

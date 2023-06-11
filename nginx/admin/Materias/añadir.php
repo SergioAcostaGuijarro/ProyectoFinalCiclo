@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 $conexion = mysqli_connect("db", "root", "rootroot", "educados") or die("No se puede conectar con el servidor");
 $instruccion = "SELECT curso FROM curso";
 $consulta = mysqli_query($conexion, $instruccion) or die("Fallo en la consulta");

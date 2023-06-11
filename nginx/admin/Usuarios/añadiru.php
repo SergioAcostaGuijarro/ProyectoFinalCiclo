@@ -49,8 +49,8 @@ session_start();
         <form action="añadiru2.php" method="POST">
             <input type="text" name="nombre" id="nombre" placeholder="Usuario" required/>
             <input type="email" name="correo" id="correo" placeholder="Correo" required/>
-            <input type="password" name="pass" id="pass" placeholder="contrasena" required/>
-            <input type="password" name="pass2" id="pass2" placeholder="Repita la contrasena" required/>
+            <input type="password" name="pass" id="pass" placeholder="Contraseña" required/>
+            <input type="password" name="pass2" id="pass2" placeholder="Repita la contraseña" required/>
             <pre><h5><input type="radio" value="padre" name="opcion" required> Padre    <input type="radio" value="alumno" name="opcion" required> Alumno</h5></pre>
             <input type="submit" value="Añadir" name="añadir"  class="btn  btn--primary" onclick="f_validar()">
         </form>
@@ -81,7 +81,7 @@ session_start();
            print("<TD>" . $resultado['id_usuario'] . "</TD>\n");
            print("<TD>" . $resultado['nombre'] . "</TD>\n");
            print("<TD>" . $resultado['correo'] . "</TD>\n");
-           print("<TD>" . $resultado['contrasena'] . "</TD>\n");
+           print("<TD>" . $resultado['contraseña'] . "</TD>\n");
            print("<TD>" . $resultado['tipo_usuario'] . "</TD>\n");
            print("</TR>\n");
         }

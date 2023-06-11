@@ -54,7 +54,7 @@ session_start();
             <h6>Datos: </h6>
             <input type="text" placeholder="Nombre..." name="nombre" required>
             <input type="email" placeholder="Email..." name="email" required>
-            <input type="password" placeholder="contrasena..." name="contrasena" required>
+            <input type="password" placeholder="Contraseña..." name="contraseña" required>
          </div>
          <div class="der">
             <input type="Submit" value="Cambiar" name="entrar"  class="btn  btn--primary">

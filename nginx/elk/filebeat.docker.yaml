@@ -21,12 +21,22 @@ filebeat.autodiscover:
           config:
             - type: container
               multiline.type: pattern
-              multiline.pattern: '^[[:space:]]+(at|\.{3})[[:space:]]'
+              multiline.pattern: '^[[:space:]]+(at|\.{3})[[:space:]]+\b|^java.lang.RuntimeException:'
               multiline.negate: false
               multiline.match: after
               paths:
-                - "/usr/share/logstash/logstash-tutorial.log"
-                - "/usr/share/logstash/logstash-tutorial-2.log"
+                - /var/lib/docker/containers/${data.docker.container.id}/*.log
+              encoding: utf-8
+
+processors:
+- add_locale:
+    format: abbreviation
+- add_host_metadata: ~
+
+#setup.kibana:
+#   host: "kibana-01:5601"
+#output.elasticsearch:
+#  hosts: '${ELASTICSEARCH_HOSTS:es-node-01:9200}'
 
 output.logstash:
-  hosts: ["logstash-01:5400"]
+   hosts: ["logstash-01:5400"]

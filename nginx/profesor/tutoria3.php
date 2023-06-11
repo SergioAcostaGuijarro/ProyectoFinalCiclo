@@ -45,16 +45,18 @@
                 
 			<div class="dashboard__item">
 				<div class="card">
-					<form method="post">
-						<select name="evaluacion" id="evaluacion" style="min-width: 25%;" required>
-							<option value="EVALUACIÓN" hidden >---</option>
-							<option value="primer_ev">Primera EV</option>
-							<option value="segunda_ev">Segunda EV</option>
-							<option value="tercer_ev">Tercera EV</option>
-                            <option value="nota_media">Final curso</option>
-						</select>
-                        <input type="hidden" name="id_alumno" value="<?php echo $_POST['id_alumno']; ?>">
-						<input type="submit" value="Mostrar" name="mostrar" class="btn btn--primary">
+                <form method="post">
+                    <select name="evaluacion" id="evaluacion" style="min-width: 25%;" required>
+                        <option value="EVALUACIÓN" hidden>---</option>
+                        <option value="primer_ev" <?php if(isset($_POST['evaluacion']) && $_POST['evaluacion'] == 'primer_ev') echo 'selected'; ?>>Primera EV</option>
+                        <option value="segunda_ev" <?php if(isset($_POST['evaluacion']) && $_POST['evaluacion'] == 'segunda_ev') echo 'selected'; ?>>Segunda EV</option>
+                        <option value="tercer_ev" <?php if(isset($_POST['evaluacion']) && $_POST['evaluacion'] == 'tercer_ev') echo 'selected'; ?>>Tercera EV</option>
+                        <option value="nota_media" <?php if(isset($_POST['evaluacion']) && $_POST['evaluacion'] == 'nota_media') echo 'selected'; ?>>Final curso</option>
+                    </select>
+                    <input type="hidden" name="id_alumno" value="<?php echo $_POST['id_alumno']; ?>">
+                    <input type="submit" value="Mostrar" name="mostrar" class="btn btn--primary">
+                </form>
+
 					</form>
                     <?php
                         $evaluacion = $_POST['evaluacion'];
@@ -62,7 +64,7 @@
 
                         // Obtener el id del profesor a partir del correo de inicio de sesión
                         $correo = $_SESSION['correo'];
-                        $conexion = mysqli_connect("localhost", "root", "rootroot", "educados") or die("No se puede conectar con el servidor");
+                        $conexion = mysqli_connect("db", "root", "rootroot", "educados") or die("No se puede conectar con el servidor");
                         $instruccion = "SELECT id_usuario FROM profesor WHERE correo = '$correo'";
                         $consulta = mysqli_query($conexion, $instruccion) or die("Fallo en la consulta");
                         $id_profesor = mysqli_fetch_array($consulta)['id_usuario'];
@@ -79,7 +81,7 @@
                         } else {
                             $instruccion2 .= " AND 1=0"; // No se seleccionará ningún registro si no se ha elegido una evaluación
                         }
-                        
+
                         $consulta = mysqli_query($conexion, $instruccion2) or die("Fallo en la consulta");
 
                         $nfilas = mysqli_num_rows($consulta);
@@ -116,21 +118,24 @@
                                 }
                                 print("<TD>" . $resultado['curso'] . "</TD>\n");
                                 echo "<form method='post' action='tutoria3.php'>";
-										echo "	<input type='hidden' name='id_materia' value='" . $resultado['id_materia'] . "'>";
-										echo "	<input type='hidden' name='materia' value='" . $resultado['materia'] . "'>";
-										echo "	<input type='hidden' name='id_alumno' value='" . $resultado['id_alumno'] . "'>";
-										echo "  <input type='hidden' name='evaluacion' value='" . $evaluacion . "'>";
-										echo "  <input type='hidden' name='curso' value='" . $resultado['curso'] . "'>";								 
-								echo "</form>";
+                                echo "  <input type='hidden' name='id_materia' value='" . $resultado['id_materia'] . "'>";
+                                echo "  <input type='hidden' name='materia' value='" . $resultado['materia'] . "'>";
+                                echo "  <input type='hidden' name='id_alumno' value='" . $resultado['id_alumno'] . "'>";
+                                echo "  <input type='hidden' name='evaluacion' value='" . $evaluacion . "'>";
+                                echo "  <input type='hidden' name='curso' value='" . $resultado['curso'] . "'>";
+
+                                echo "</form>";
                             }
                             print("</TABLE>\n");
-                            print("<button onclick='generateExcel()'>Exportar a Excel</button><button onclick='generatePDF()'>Exportar a PDF</button>\n");
+
+                            echo "<button onclick='generateExcel()'>Exportar a Excel</button><button onclick='generatePDF()'>Exportar a PDF</button>\n";
                         } else {
                             echo "<br>";
                             print("Tienes que elegir una evaluación");
                         }
                         mysqli_close($conexion);
-                    ?>
+                        ?>
+
                     </div>
                     </div>
                     <div class="dashboard__item">
@@ -138,7 +143,7 @@
           <strong>Nivel de la clase</strong>
         
           <?php
-            $conexion2 = mysqli_connect("localhost", "root", "rootroot", "educados") or die("No se puede conectar con el servidor");
+            $conexion2 = mysqli_connect("db", "root", "rootroot", "educados") or die("No se puede conectar con el servidor");
             $instruccion3 = "SELECT * FROM curso, materia, calificaciones WHERE curso.id_curso=materia.id_curso and materia.id_materia=calificaciones.id_materia AND tutor='$_SESSION[nombre]' AND id_alumno='$id_usuario'";
             $consulta2 = mysqli_query($conexion2, $instruccion3) or die("Fallo en la consulta");
             $resultado2 = mysqli_fetch_array($consulta2);
@@ -149,24 +154,33 @@
             $curso = $resultado2['curso'];
 
             // Conexión a la base de datos
-            $servername = "localhost";
+            $servername = "db";
             $username = "root";
             $password = "rootroot";
             $dbname = "educados";
 
             $notaalumno = "(select COUNT(id_alumno) from calificaciones where id_alumno='$id_alumno')";
-            $notaclase = "(select COUNT(id_alumno) from calificaciones, materia where calificaciones.id_materia=materia.id_materia and curso='$curso')";
+            $notaclase = "(select COUNT(id_alumno) from calificaciones, materia where 
+            calificaciones.id_materia=materia.id_materia and curso='$curso')";
             $conn = mysqli_connect($servername, $username, $password, $dbname);
 
             // Consulta SQL
             if ($evaluacion == "primer_ev") {
-                $sql = "SELECT SUM(primer_ev)/$notaalumno AS NotaAlumno, (SELECT sum(primer_ev)/$notaclase FROM calificaciones, materia WHERE calificaciones.id_materia=materia.id_materia AND curso='$curso') AS NotaClase FROM calificaciones WHERE id_alumno='$id_alumno'";
+                $sql = "SELECT SUM(primer_ev)/$notaalumno AS NotaAlumno, (SELECT sum(primer_ev)/$notaclase FROM 
+                calificaciones, materia WHERE calificaciones.id_materia=materia.id_materia AND curso='$curso') AS 
+                NotaClase FROM calificaciones WHERE id_alumno='$id_alumno'";
             } elseif ($evaluacion == "segunda_ev") {
-                $sql = "SELECT SUM(segunda_ev)/$notaalumno AS NotaAlumno, (SELECT sum(segunda_ev)/$notaclase FROM calificaciones, materia WHERE calificaciones.id_materia=materia.id_materia AND curso='$curso') AS NotaClase FROM calificaciones WHERE id_alumno='$id_alumno'";
+                $sql = "SELECT SUM(segunda_ev)/$notaalumno AS NotaAlumno, (SELECT sum(segunda_ev)/$notaclase FROM 
+                calificaciones, materia WHERE calificaciones.id_materia=materia.id_materia AND curso='$curso') AS 
+                NotaClase FROM calificaciones WHERE id_alumno='$id_alumno'";
             } elseif ($evaluacion == "tercer_ev") {
-                $sql = "SELECT SUM(tercer_ev)/$notaalumno AS NotaAlumno, (SELECT sum(tercer_ev)/$notaclase FROM calificaciones, materia WHERE calificaciones.id_materia=materia.id_materia AND curso='$curso') AS NotaClase FROM calificaciones WHERE id_alumno='$id_alumno'";
+                $sql = "SELECT SUM(tercer_ev)/$notaalumno AS NotaAlumno, (SELECT sum(tercer_ev)/$notaclase FROM 
+                calificaciones, materia WHERE calificaciones.id_materia=materia.id_materia AND curso='$curso') AS 
+                NotaClase FROM calificaciones WHERE id_alumno='$id_alumno'";
             } elseif ($evaluacion == "nota_media") {
-                $sql = "SELECT SUM(nota_media)/$notaalumno AS NotaAlumno, (SELECT SUM(nota_media)/$notaclase FROM calificaciones, materia WHERE calificaciones.id_materia=materia.id_materia AND curso='$curso') AS NotaClase FROM calificaciones WHERE id_alumno='$id_alumno'";
+                $sql = "SELECT SUM(nota_media)/$notaalumno AS NotaAlumno, (SELECT SUM(nota_media)/$notaclase FROM 
+                calificaciones, materia WHERE calificaciones.id_materia=materia.id_materia AND curso='$curso') AS 
+                NotaClase FROM calificaciones WHERE id_alumno='$id_alumno'";
             }
 
             // Ejecutar la consulta

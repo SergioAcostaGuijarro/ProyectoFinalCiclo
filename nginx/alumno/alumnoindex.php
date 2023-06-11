@@ -40,7 +40,7 @@ session_start();
   <main class="admin__main">
     <div class="dashboard">
       <div class="dashboard__item">
-        <div class="card">
+        <div class="card2">
         <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&bgcolor=%23ffffff&ctz=Europe%2FMadrid&showTz=0&showCalendars=0&showTabs=0&showTitle=0&title=EDUCADOS&showNav=1&showDate=1&showPrint=1&mode=MONTH&src=YWNvc3RhZ3VpamFycm9zZXJnaW9AZ21haWwuY29t&src=Y19jbGFzc3Jvb21jYjE3ZGZkNUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZXMuc3BhaW4jaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&src=NzRjNGx1bm5sbDVmNDFmNWY5cjZwOWlpZGxoY3QzN2pAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23039BE5&color=%230047a8&color=%230B8043&color=%23D81B60" style="border-width:0" width="100%" height="550px" frameborder="0" scrolling="no"></iframe>        </div>
       </div>
     </div>

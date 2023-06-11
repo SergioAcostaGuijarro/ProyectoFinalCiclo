@@ -14,25 +14,33 @@
     $correoexistente = "select correo from usuario where correo='$correo'";
     $resultado = mysqli_query($conexion, $correoexistente);
 
-    if ((mysqli_num_rows($resultado) > 0) && ($unicode != $codigo)) {
+    if (mysqli_num_rows($resultado) > 0) 
+    {
         echo "<script language='javascript'>
             alert('¡¡¡El código de verificación no es igual al enviado!!!');
             window.location.replace('./registrarse2.php');
             </script>";
+        }
+        elseif ($unicode != $codigo)
+        {
+            echo "<script language='javascript'>
+            alert('¡¡¡El código de verificación no es igual al enviado!!!');
+            window.location.replace('./registrarse2.php');
+            </script>";
         } else {
-            $query = "insert into usuario (nombre, correo, contrasena, tipo_usuario) values ('$nombre','$correo','$passencryp','$tipo_usuario')";
+            $query = "insert into usuario (nombre, correo, contraseña, tipo_usuario) values ('$nombre','$correo','$passencryp','$tipo_usuario')";
             if(mysqli_query ($conexion, $query)) {
                 echo "<script language='javascript'>
-                    alert('¡¡¡Usuario creado!!!');
-                    window.location.replace('./inicio_sesion.php');
-                    </script>"; 
+                alert('¡¡¡Usuario creado!!!');
+                window.location.replace('./inicio_sesión.php');
+                </script>"; 
             } else {
                 echo "<script language='javascript'>
                     alert('¡¡¡Usuario no creado, compruebe los parámetros!!!');
                     window.location.replace('./registrarse.php');
                     </script>";
             }
-        }
+    }
 
         mysqli_close($conexion);
 ?>

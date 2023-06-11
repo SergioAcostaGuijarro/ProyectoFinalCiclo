@@ -19,16 +19,16 @@ if (mysqli_num_rows($resultado) > 0) {
         </script>";
 } elseif (strlen($pass) <= 4) {
     echo "<script language='javascript'>
-        alert('¡¡¡Las contrasenas tienen que tener mínimo 5 caracteres!!!');
+        alert('¡¡¡Las contraseñas tienen que tener mínimo 5 caracteres!!!');
         window.location.replace('./añadiru.php');
         </script>";
 } elseif ($pass != $pass2) {
     echo "<script language='javascript'>
-        alert('¡¡¡Las contrasenas no coinciden!!!');
+        alert('¡¡¡Las contraseñas no coinciden!!!');
         window.location.replace('./añadiru.php');
         </script>";
 } else {
-    $query = "insert into usuario (nombre, correo, contrasena, tipo_usuario) values ('$nombre','$correo','$passencryp','profesor')";
+    $query = "insert into usuario (nombre, correo, contraseña, tipo_usuario) values ('$nombre','$correo','$passencryp','profesor')";
     if(mysqli_query ($conexion, $query)) {
         echo "<script language='javascript'>
             alert('¡¡¡Trabajador creado!!!');

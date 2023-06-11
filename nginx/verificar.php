@@ -16,7 +16,7 @@ if(mysqli_num_rows($resultado) > 0) {
     mysqli_query($conexion, $sql_update);
 
     /* Mostrar mensaje de éxito */
-    echo "Su cuenta ha sido verificada con éxito. <a href='inicio_sesion.php'>Iniciar sesión</a>";
+    echo "Su cuenta ha sido verificada con éxito. <a href='inicio_sesión.php'>Iniciar sesión</a>";
 } else {
     /* Mostrar mensaje de error */
     echo "Ha ocurrido un error al verificar su cuenta.";

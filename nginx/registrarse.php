@@ -12,7 +12,7 @@
                 <img src="img/educados.png" name="logo">
             </div>
             <div class="iniciosesion">
-                <a href="./inicio_sesion.php" id="inicio"><img src="./img/iniciowhite.png" alt="" width="75rpx"></a>
+                <a href="./inicio_sesión.php" id="inicio"><img src="./img/iniciowhite.png" alt="" width="75rpx"></a>
             </div>
         </div>
         <div class="container__menu">
@@ -40,16 +40,16 @@
             <label id="icon" for="name"><i class="icon-envelope"></i></label>
             <input type="email" name="correo" id="correo" placeholder="Correo" required/>
             <label id="icon" for="name"><i class="icon-shield"></i></label>
-            <input type="password" name="pass" id="pass" placeholder="contrasena" required/>
+            <input type="password" name="pass" id="pass" placeholder="Contraseña" required/>
             <label id="icon" for="name"><i class="icon-check"></i></label>
-            <input type="password" name="pass2" id="pass2" placeholder="Repita la contrasena" required/>
+            <input type="password" name="pass2" id="pass2" placeholder="Repita la contraseña" required/>
         <hr>
             <pre><br><a><input type="radio" value="padre" name="opcion" required> Soy padre     <a> <input type="radio" value="alumno" name="opcion" required> Soy alumno</a></pre>
             <div class="gender"><p><input type="checkbox" name="politica" id="politica" required> Ha leido y acepta todas nuestras políticas</p></div>
             <input type="submit" id="entrar" name="enviar"  class="botones" value="ACEPTAR">  
         
         </form><br>
-        <a href="inicio_sesion.php">¿Ya tiene una cuenta?, inicie sesión</a>
+        <a href="inicio_sesión.php">¿Ya tiene una cuenta?, inicie sesión</a>
         <br><br><hr>
         </article>
     </main>
